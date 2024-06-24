@@ -1,4 +1,4 @@
-import {render, fireEvent, screen} from '@testing-library/react'
+import { render, fireEvent, screen } from "@testing-library/react";
 import App from "./App";
 
 test("renders the comment list container with no error message", () => {
@@ -22,12 +22,16 @@ test("post a comment", () => {
   expect(formElement).toBeInTheDocument();
 
   const nameInput = result.container.querySelector(".comment-form form #name");
-  const commentInput = result.container.querySelector(".comment-form form #comment");
-  const submitBtn = result.container.querySelector(".comment-form form button[type='submit']");
+  const commentInput = result.container.querySelector(
+    ".comment-form form #comment",
+  );
+  const submitBtn = result.container.querySelector(
+    ".comment-form form button[type='submit']",
+  );
 
   // FILL OUT THE FORM AND SUBMIT
   // nameInput.setAttribute("value", "Tester");
   // commentInput.setAttribute("value", "This is a testing comment");
   // fireEvent.click(submitBtn);
-  // TODO: NEED TO INTERCEPT THE API, will use nock maybe? 
+  // TODO: NEED TO INTERCEPT THE API, will use nock maybe?
 });
