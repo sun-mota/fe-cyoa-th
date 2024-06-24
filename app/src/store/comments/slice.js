@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 export const commentsSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState: {
     list: [],
-    status: 'idle',
+    status: "idle",
     error: null,
   },
   reducers: {
@@ -30,4 +30,5 @@ export const commentsSlice = createSlice({
 
 export default commentsSlice.reducer;
 
-export const { post, setList, deleteAll, setStatus, setError } = commentsSlice.actions;
+export const { post, setList, deleteAll, setStatus, setError } =
+  commentsSlice.actions;

@@ -1,19 +1,17 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import CommentListItem from "./CommentListItem";
 
 function CommentList() {
-  const list = useSelector(state => state.comments.list);
-  const error = useSelector(state => state.comments.error);
+  const list = useSelector((state) => state.comments.list);
+  const error = useSelector((state) => state.comments.error);
 
   return (
     <>
-    {error ? 
-      <div className="error-message">{error}</div>
-      : null}
+      {error ? <div className="error-message">{error}</div> : null}
       <ul className="comment-list">
-        {
-          list?.map(item =>  <CommentListItem key={item.id} data={item}/>)
-        }
+        {list?.map((item) => (
+          <CommentListItem key={item.id} data={item} />
+        ))}
       </ul>
     </>
   );

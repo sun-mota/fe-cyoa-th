@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { deleteComments } from "../store/comments/apiActions";
 
 export default function CommentsFlushButton() {
@@ -11,5 +11,9 @@ export default function CommentsFlushButton() {
       dispatch(deleteComments());
     }
   }
-  return <button id="delete-all" aria-label='delete all' onClick={onClick}>X</button>;
+  return (
+    <button id="delete-all" aria-label="delete all" onClick={onClick}>
+      X
+    </button>
+  );
 }
