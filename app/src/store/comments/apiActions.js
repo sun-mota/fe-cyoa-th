@@ -9,8 +9,8 @@ export function fetchComments() {
       dispatch(setList(json.reverse()));
       dispatch(setStatus('idle'));
     } catch (err) {
-      dispatch(setStatus('error'));
-      dispatch(setError("something went wrong during fetching"));
+      dispatch(setStatus('not init'));
+      dispatch(setError("Something went wrong during fetching. Refresh the page."));
     }
   }
 }
@@ -19,6 +19,18 @@ async function fetchComment(id) {
   const response = await fetch('/getComment/' + id)
   const json = await response.json();
   return json;
+}
+
+let errorTimeout = 0;
+function setErrorStatus(dispatch, msg, clearMessageTimeout = 10 * 1000) {
+  clearTimeout(errorTimeout);
+  dispatch(setStatus('error'));
+  if (clearMessageTimeout > 0) {
+    dispatch(setError(msg));
+    errorTimeout = setTimeout(() => {
+      dispatch(setError(''));
+    }, clearMessageTimeout);
+  }
 }
 
 export function postComment({ name, message }) {
@@ -35,8 +47,7 @@ export function postComment({ name, message }) {
       dispatch(post(newComment));
       dispatch(setStatus('idle'));
     } catch (err) {
-      dispatch(setStatus('error'));
-      dispatch(setError("something went wrong during posting a comment"));
+      setErrorStatus("Something went wrong during posting a comment. Please try again later.");
     }
   }
 };
@@ -51,8 +62,7 @@ export  function deleteComments() {
       }
       dispatch(setStatus('idle'));
     } catch (err) {
-      dispatch(setStatus('error'));
-      dispatch(setError("something went wrong during deleting comments"));
+      setErrorStatus(dispatch, "Something went wrong during deleting comments. Please try agin.");
     }
   }
 }
