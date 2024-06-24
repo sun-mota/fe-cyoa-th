@@ -9,6 +9,7 @@ export function fetchComments() {
       dispatch(setList(json.reverse()));
       dispatch(setStatus('idle'));
     } catch (err) {
+      // dispatch(setList([])); ?? Should I reset the list?
       dispatch(setStatus('not init'));
       dispatch(setError("Something went wrong during fetching. Refresh the page."));
     }
