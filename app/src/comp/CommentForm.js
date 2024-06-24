@@ -17,7 +17,6 @@ function CommentForm() {
 
   useEffect(() => {
     if (storeStatus === 'idle') {
-      setName('');
       setComment('');
     }
   }, [storeStatus]);
@@ -27,7 +26,7 @@ function CommentForm() {
       <form onSubmit={onSubmit}>
         <label htmlFor="name">Name</label><input type="text" id="name" value={name} onChange={(e) => setName(e.currentTarget.value)} required/>
         <textarea id="comment" aria-label="comment message" value={comment} onChange={(e) => setComment(e.currentTarget.value)} required/>
-        <button type="submit" aria-label="submit">Comment</button>
+        <button type="submit" aria-live="polite" aria-busy={storeStatus === 'processing'} aria-label="submit" disabled={storeStatus === 'processing'}>{storeStatus === 'processing' ? '...' : 'Comment'}</button>
       </form>
     </div>
   );
