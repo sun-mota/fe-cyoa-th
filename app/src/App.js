@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { fetchComments } from './store/comments/slice';
+import { fetchComments } from './store/comments/apiActions';
 import { Provider } from 'react-redux';
 import store from "./store";
 import './App.css';
@@ -9,7 +9,7 @@ import CommentsFlushButton from './comp/CommentsFlushButton';
 
 function App() {
   useEffect(() => {
-    fetchComments(store);
+    store.dispatch(fetchComments());
   }, []);
   
   return (

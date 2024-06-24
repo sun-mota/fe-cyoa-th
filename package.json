@@ -6,7 +6,7 @@
   "scripts": {
     "// TODO: Add your start script if you are using a front-end JS framework": "",
     "test": "jest",
-    "start": "",
+    "start": "npm start --prefix ./app",
     "server": "nodemon server",
     "// TODO: You can remove concurrently if you're not using a front-end JS framework": "",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start\""

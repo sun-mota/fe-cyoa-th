@@ -1,22 +1,26 @@
-import { useState } from "react";
-import { useDispatch } from 'react-redux';
-import { postComment } from "../store/comments/slice";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { postComment } from "../store/comments/apiActions";
 
 function CommentForm() {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const dispatch = useDispatch();
+  const storeStatus = useSelector((state) => {
+    return state.comments.status;
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("submit", name, comment);
-    postComment({ dispatch }, { name, message: comment }).then(() => {
-      setName("");
-      setComment("");
-    }).catch(err => {
-      window.alert("something went wrong");
-    });
+    dispatch(postComment({ name, message: comment }));
   }
+
+  useEffect(() => {
+    if (storeStatus === 'idle') {
+      setName('');
+      setComment('');
+    }
+  }, [storeStatus]);
 
   return (
     <div className="comment-form">
