@@ -62,7 +62,7 @@ dialog::backdrop {
   padding-top: 0;
 }
 
-.comment-list-item button {
+/* .comment-list-item button {
   position: absolute;
   background-color: transparent;
   border: none;
@@ -70,4 +70,4 @@ dialog::backdrop {
   right: 0;
   top: 0;
   bottom: 0;
-}
+} */
